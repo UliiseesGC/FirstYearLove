@@ -79,18 +79,12 @@ export function ScrollLine() {
     const startX = getSide(0)
     const startY = sections[0].getBoundingClientRect().top + window.scrollY
     let d = `M ${startX} ${startY}`
-    let lastX = startX
     let lastY = startY
 
     for (let i = 0; i < sections.length; i++) {
       const rect = sections[i].getBoundingClientRect()
       const bottom = rect.bottom + window.scrollY
       const x = getSide(i)
-
-      if (i === 0) {
-        lastX = x
-      }
-
       const nextX = i < sections.length - 1 ? getSide(i + 1) : null
 
       if (nextX !== null) {
@@ -101,19 +95,15 @@ export function ScrollLine() {
           d += ` L ${x} ${vertEnd}`
           lastY = vertEnd
         }
-        lastX = x
 
         d += ` A ${r} ${r} 0 0 ${dx > 0 ? 1 : 0} ${x + (dx > 0 ? r : -r)} ${bottom}`
-        lastX = x + (dx > 0 ? r : -r)
         lastY = bottom
 
         const hEnd = nextX + (dx > 0 ? -r : r)
         d += ` L ${hEnd} ${bottom}`
-        lastX = hEnd
         lastY = bottom
 
         d += ` A ${r} ${r} 0 0 ${dx > 0 ? 0 : 1} ${nextX} ${bottom + r}`
-        lastX = nextX
         lastY = bottom + r
       } else {
         if (bottom > lastY) {
