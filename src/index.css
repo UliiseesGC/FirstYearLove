@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-rose-50: #fff1f2;
+  --color-rose-100: #ffe4e6;
+  --color-rose-200: #fecdd3;
+  --color-rose-300: #fda4af;
+  --color-rose-400: #fb7185;
+  --color-rose-500: #f43f5e;
+  --color-rose-600: #e11d48;
+  --color-rose-700: #be123c;
+  --color-rose-800: #9f1239;
+  --color-rose-900: #881337;
+
+  --color-cream: #fdf6f0;
+  --color-vintage-pink: #f8e8e0;
+  --color-vintage-red: #8b1a1a;
+  --color-gold: #c9a96e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-hand {
+  font-family: 'Cedarville Cursive', cursive;
+}
+
+@keyframes float {
+  0%, 100% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+  25% {
+    translate: 6px -10px;
+    rotate: 1deg;
+  }
+  50% {
+    translate: -4px -18px;
+    rotate: -1deg;
+  }
+  75% {
+    translate: 8px -6px;
+    rotate: 1.5deg;
+  }
+}
+
+.polaroid-float {
+  animation: float ease-in-out infinite;
+  transition: animation-play-state 0.01s;
+}
+
+.group:hover .polaroid-float {
+  animation-play-state: paused;
+  filter: blur(8px);
+  transition: filter 0.5s ease;
+}
