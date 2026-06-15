@@ -52,7 +52,7 @@ function App() {
         <motion.div
           key={activeMonth.bgImage}
           className="fixed inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url("/${activeMonth.bgImage}")` }}
+          style={{ backgroundImage: `url(${activeMonth.bgImage})` }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
