@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <title>QR — Nuestro primer año juntos</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #fef9f0;
+      padding: 1rem;
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    .card {
+      background: white;
+      padding: 2rem 2rem 2.5rem;
+      border-radius: 4px;
+      box-shadow: 0 8px 32px rgba(139,26,26,0.12), 0 2px 8px rgba(0,0,0,0.06);
+      text-align: center;
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      border: 1px solid #fce4e4;
+    }
+    .card::after {
+      content: "♥";
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.2rem;
+      color: #8b1a1a;
+      background: #fef9f0;
+      padding: 0 12px;
+    }
+    .title {
+      color: #8b1a1a;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+    .subtitle {
+      font-family: 'Cedarville Cursive', cursive;
+      color: #a8a29e;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    .qr-wrapper {
+      background: #fef9f0;
+      padding: 1rem;
+      border-radius: 4px;
+      display: inline-block;
+      border: 1px solid #fce4e4;
+    }
+    .qr-wrapper img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+    }
+    .url {
+      color: #8b1a1a;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-top: 1.2rem;
+      letter-spacing: 0.05em;
+    }
+    .dates {
+      font-family: 'Cedarville Cursive', cursive;
+      color: #a8a29e;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+    .sepia-line {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c9a96e, transparent);
+      margin: 0.8rem auto;
+    }
+    @media print {
+      body { padding: 0; }
+      .card { box-shadow: none; border-color: #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="title">Nuestro primer año juntos</div>
+    <div class="subtitle">Escanea para ver la galería</div>
+    <div class="sepia-line"></div>
+    <div class="qr-wrapper">
+      <img src="./qrcode.png" alt="QR Code" />
+    </div>
+    <div class="sepia-line"></div>
+    <div class="url">firstyearlove.com</div>
+    <div class="dates">Junio 2025 — Junio 2026</div>
+  </div>
+</body>
+</html>
