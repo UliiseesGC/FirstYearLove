@@ -1,12 +1,12 @@
 const photos = [
-  "images/02-febrero/IMG_7240.jpeg",
-  "images/04-abril/IMG_8003.jpeg",
-  "images/05-mayo/IMG_8495.jpeg",
-  "images/08-agosto/IMG_3044.jpeg",
-  "images/09-septiembre/IMG_4911.jpeg",
-  "images/11-noviembre/IMG_6218.jpeg",
-  "images/12-diciembre/IMG_6444.jpeg",
-  "images/12-diciembre/IMG_6783.jpeg",
+  "/images/02-febrero/IMG_7240.jpeg",
+  "/images/04-abril/IMG_8003.jpeg",
+  "/images/05-mayo/IMG_8495.jpeg",
+  "/images/08-agosto/IMG_3044.jpeg",
+  "/images/09-septiembre/IMG_4911.jpeg",
+  "/images/11-noviembre/IMG_6218.jpeg",
+  "/images/12-diciembre/IMG_6444.jpeg",
+  "/images/12-diciembre/IMG_6783.jpeg",
 ]
 
 const POSITIONS = [

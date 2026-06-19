@@ -4,7 +4,6 @@ import type { MonthImage } from "../data/months"
 
 interface ImageCardProps {
   images: MonthImage[]
-  description: string
   monthName: string
   index: number
 }
@@ -12,7 +11,17 @@ interface ImageCardProps {
 const ROTATIONS = [-2, 1.5, -1, 2, -1.5, 1, -2.5, 1.5]
 const OVERLAP = 40
 
-export function ImageCard({ images, description, monthName, index }: ImageCardProps) {
+function formatDescription(text: string, idx: number, total: number): string {
+  let result = text.trim()
+  if (total > 1) {
+    if (idx === 0) result = result + '...'
+    else if (idx === total - 1) result = '...' + result
+    else result = '...' + result + '...'
+  }
+  return result
+}
+
+export function ImageCard({ images, monthName, index }: ImageCardProps) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: "-100px" })
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null)
@@ -54,7 +63,7 @@ export function ImageCard({ images, description, monthName, index }: ImageCardPr
                     className="w-full h-full object-cover"
                     style={{ filter: expandedIdx === i ? "blur(4px) sepia(0.2)" : "sepia(0.3) contrast(1.05) brightness(1.05)" }}
                   />
-                  {expandedIdx === i && (
+                   {expandedIdx === i && (
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -62,7 +71,7 @@ export function ImageCard({ images, description, monthName, index }: ImageCardPr
                       className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px] z-10"
                     >
                       <p className="text-white text-center text-sm md:text-base italic leading-relaxed px-4 font-display drop-shadow-md">
-                        &ldquo;{description}&rdquo;
+                        &ldquo;{formatDescription(img.description ?? '', i, images.length)}&rdquo;
                       </p>
                     </motion.div>
                   )}
@@ -103,7 +112,7 @@ export function ImageCard({ images, description, monthName, index }: ImageCardPr
                   className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-[2px] z-10"
                 >
                   <p className="text-white text-center text-sm italic leading-relaxed px-4 font-display drop-shadow-md">
-                    &ldquo;{description}&rdquo;
+                    &ldquo;{img.description ?? ''}&rdquo;
                   </p>
                 </motion.div>
               )}

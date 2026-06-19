@@ -44,13 +44,13 @@ export function MonthSection({ month, index }: MonthSectionProps) {
               {month.name}
             </motion.h2>
             <div className="flex-1 flex justify-center">
-              <ImageCard images={month.images} description={month.description} monthName={month.name} index={index} />
+              <ImageCard images={month.images} monthName={month.name} index={index} />
             </div>
           </>
         ) : (
           <>
             <div className="flex-1 flex justify-center">
-              <ImageCard images={month.images} description={month.description} monthName={month.name} index={index} />
+              <ImageCard images={month.images} monthName={month.name} index={index} />
             </div>
             <motion.h2
               initial={{ opacity: 0, x: 20 }}
@@ -67,8 +67,17 @@ export function MonthSection({ month, index }: MonthSectionProps) {
 
       {/* Desktop: ImageCard below title */}
       <div className="hidden md:block">
-        <ImageCard images={month.images} description={month.description} monthName={month.name} index={index} />
+        <ImageCard images={month.images} monthName={month.name} index={index} />
       </div>
+
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+        className="text-center text-sm md:text-base text-stone-500 italic max-w-md mt-8 font-light leading-relaxed"
+      >
+        {month.subtext}
+      </motion.p>
     </section>
   )
 }
