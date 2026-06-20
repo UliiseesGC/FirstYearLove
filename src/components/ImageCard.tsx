@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef, useState, useCallback } from "react"
 import type { MonthImage } from "../data/months"
+import { HeartLoader } from "./HeartLoader"
 
 interface ImageCardProps {
   images: MonthImage[]
@@ -26,6 +27,10 @@ export function ImageCard({ images, monthName, index }: ImageCardProps) {
   const inView = useInView(ref, { once: true, margin: "-100px" })
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null)
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({})
+  const onImgLoad = useCallback((i: number) => {
+    setLoadedImages(prev => ({ ...prev, [i]: true }))
+  }, [])
 
   if (images.length === 0) return null
 
@@ -57,11 +62,13 @@ export function ImageCard({ images, monthName, index }: ImageCardProps) {
                 onClick={() => setExpandedIdx(expandedIdx === i ? null : i)}
               >
                 <div className="relative w-52 h-52 md:w-72 md:h-72 overflow-hidden rounded-sm">
+                  {!loadedImages[i] && <HeartLoader />}
                   <img
                     src={img.src}
                     alt={monthName}
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full object-cover transition-opacity duration-300 ${!loadedImages[i] ? 'opacity-0' : 'opacity-100'}`}
                     style={{ filter: expandedIdx === i ? "blur(4px) sepia(0.2)" : "sepia(0.3) contrast(1.05) brightness(1.05)" }}
+                    onLoad={() => onImgLoad(i)}
                   />
                    {expandedIdx === i && (
                     <motion.div
@@ -98,11 +105,13 @@ export function ImageCard({ images, monthName, index }: ImageCardProps) {
             onClick={() => setExpandedIdx(expandedIdx === i ? null : i)}
           >
             <div className="relative w-full aspect-[4/3] overflow-hidden rounded-sm">
+              {!loadedImages[i] && <HeartLoader />}
               <img
                 src={img.src}
                 alt={`${monthName} - Foto ${i + 1}`}
-                className="w-full h-full object-cover"
+                className={`w-full h-full object-cover transition-opacity duration-300 ${!loadedImages[i] ? 'opacity-0' : 'opacity-100'}`}
                 style={{ filter: expandedIdx === i ? "blur(4px) sepia(0.2)" : "sepia(0.3) contrast(1.05) brightness(1.05)" }}
+                onLoad={() => onImgLoad(i)}
               />
               {expandedIdx === i && (
                 <motion.div
